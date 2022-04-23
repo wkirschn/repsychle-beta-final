@@ -2,10 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 
-
-
 router.use(express.urlencoded({extended: false}))
-
 
 
 /* GET home page. */
@@ -62,12 +59,18 @@ router.get('/login', function(req, res, next) {
 
 /* GET Register page. */
 router.get('/register', (req, res, next) => {
-  /*    const messages = req.flash();
-      res.render('register', {messages})*/
   res.render('register');
 });
 
+/* GET Repsychle_Blog page. */
+router.get('/repsychle_blog', (req, res, next) => {
+  res.render('repsychle_blog');
+});
 
+/* GET How page. */
+router.get('/how', (req, res, next) => {
+  res.render('how');
+});
 
 
 
