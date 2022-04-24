@@ -42,8 +42,37 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+
+ // Import Mongoose into the Recycling after installing it
+ const mongoose = require('mongoose');
+
+ const bodyparser = require('body-parser')
+ const crypto = require('crypto');
+ const multer = require('multer');
+ const {GridFsStorage} = require('multer-gridfs-storage');
+ const Grid = require('gridfs-stream');
+ const methodOverride = require('method-override')
+
+ // Create router objects
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var reyclingRouter = require('./routes/recycling');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 var app = express();
 
