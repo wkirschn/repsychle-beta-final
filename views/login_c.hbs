@@ -1,25 +1,85 @@
+<h1>
+    {{title}}
+</h1>
+{{#if user}}
+{{!-- Add links to CRUD operations --}}
+    <a href="/recycling/add">Add a new recycling object</a>
+{{/if}}
 
-<form method="post">
-  <fieldset class="form-group">
-    <label for="username" class="col-2 control-label">
-      Username: *
-    </label>
-    <input name="username" id="username" required />
-  </fieldset>
-  <fieldset class="form-group">
-    <label for="password" class="col-2 control-label">
-      Password: *
-    </label>
-    <input name="password" id="password" type="password" required />
-  </fieldset>
-  <fieldset class="form-group">
-    <button class="btn btn-info offset-3">
-      Login
-    </button>
-    <hr />
-    Need an account?
-    <a href="/register" title="Register">
-      Register
-    </a>
-  </fieldset>
-</form>
+{{!-- To Show data --}}
+<table class="table table-striped table-hover">
+    <thead>
+    <th>Object Name</th>
+    <th>Object EcoScore</th>
+    <th>Disposal Method</th>
+    <th>Username</th>
+    <th></th>
+    </thead>
+    {{#each dataset}}
+        <tr>
+            <td>{{this.objectName}}</td>
+            <td>{{this.objectEcoScore}}</td>
+            <td>{{this.objectDisposalMethod}}</td>
+            <td>{{this.profile_id}}</td>
+            {{!-- When inside of a loop, you need to navigate out of it using '../' --}}
+            {{#if this.profile_id}}
+                <td><a href="/recycling/edit/{{this._id}}"
+                       class="btn btn-primary">Edit</a>
+                    <a href="/recycling/delete/{{this._id}}"
+                       class="btn btn-danger"
+                       onclick="return confirmDeletion();">Delete</a></td>
+            {{/if}}
+        </tr>
+    {{/each}}
+</table>
+
+
+{{#each dataset}}
+
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="https://repsychle-production-new.herokuapp.com/image/{{this.file}}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Object: {{this.objectName}}</h5>
+            <h6 class="card-title">EcoScore: {{this.objectEcoScore}}</h6>
+            <p class="card-text">Description: {{this.objectDescription}}</p>
+
+            <a href="/recycling/view/{{this._id}}" class="btn btn-primary">View Entry</a>
+            <hr>
+            {{#if this.profile_id}}
+                <td><a href="/recycling/edit/{{this._id}}"
+                       class="btn btn-primary">Edit</a>
+                    <a href="/recycling/delete/{{this._id}}"
+                       class="btn btn-danger"
+                    >Delete</a></td>
+            {{/if}}
+
+
+        </div>
+    </div>
+
+
+{{/each}}
+
+
+//    <div class="card-body">
+    <h3 class="card-title">{{recycling.objectName}}</h3>
+    <hr>
+    <h5 class="card-text">Description: </h5>
+    <p class="card-text">{{recycling.objectDescription}}</p>
+    <hr>
+    <h5 class="card-text">Disposal Method: </h5>
+    <p class="card-text">{{recycling.objectDisposalMethod}}</p>
+    <h5 class="card-text">EcoScore: </h5>
+    <p class="card-text">{{recycling.objectEcoScore}}</p>
+    <hr>
+    <h5 class="card-text">Object Longitude:</h5>
+    <p class="card-text">{{recycling.objectLong}}</p>
+
+    <h5 class="card-text">Object Latitude: </h5>
+    <p class="card-text">{{recycling.objectLat}}</p>
+    <hr>
+    <p class="card-text"><small class="text-muted">Created / Modified on: {{recycling.createdAt}}</small></p>
+
+
+</div>
+
