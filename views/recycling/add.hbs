@@ -243,14 +243,14 @@ Date:         4/23/2022
                 <div class="col-md-5" style="margin: 0px;margin-top: 5px;padding: 5px;height: 50%;">
 
                     <div class="card" style="padding: 25px; margin: 25px; background: rgba(40,45,50,0.8);">
-                        <div class="card-body" style="background: rgb(40, 45, 50);"><img src="repsychle_logo 1 shadow.png" style="width: 250px;padding-top: 15px;padding-bottom: 15px;" />
-                            <h1 style="color: white;font-size: 28px;text-align: center;margin: 50px;">Create a Database Entry in 3 Easy Steps</h1><img class="rounded-circle" src="thumbs-up-g1953574ab_1920.jpg" style="width: 200px;height: 200px;" />
+                        <div class="card-body" style="background: rgb(40, 45, 50);"><img src="/assets/img/repsychle_logo 1 shadow.png" style="width: 250px;padding-top: 15px;padding-bottom: 15px;" />
+                            <h1 style="color: white;font-size: 28px;text-align: center;margin: 50px;">Create a Database Entry in 3 Easy Steps</h1><img class="rounded-circle" src="/assets/img/thumbs-up-g1953574ab_1920.jpg" style="width: 200px;height: 200px;" />
                             <p style="color: white;font-size: 14px;text-align: center;margin: 50px;">In order to make an entry into the RePsychle Database, you will need a couple of things.</p>
-                            <h1 style="color: white;font-size: 28px;text-align: center;margin: 50px;">Step 1) Determine the Object for Submission</h1><img class="rounded-circle" src="question-mark-g032f45df3_1920.jpg" style="width: 200px;height: 200px;" />
+                            <h1 style="color: white;font-size: 28px;text-align: center;margin: 50px;">Step 1) Determine the Object for Submission</h1><img class="rounded-circle" src="/assets/img/question-mark-g032f45df3_1920.jpg" style="width: 200px;height: 200px;" />
                             <p style="color: white;font-size: 14px;text-align: center;margin: 50px;">Depending on how you would like your item to be classified, please ensure that the information that you enter into the Database Entry form is accurate.<br /><br />Three data fields of interest that may stick out to you are the following:<br /><br /><strong>EcoScore</strong><br /><br /><strong>Object Longitude</strong><br /><br /><strong>Object Latitude</strong><br /><br />For more information on how to engage with these data points, please see below.</p>
-                            <h1 style="color: white;font-size: 28px;text-align: center;margin: 50px;">Step 2) Upload the Image </h1><img class="rounded-circle" src="night-g82f9f0b8c_1920.jpg" style="width: 200px;height: 200px;" />
+                            <h1 style="color: white;font-size: 28px;text-align: center;margin: 50px;">Step 2) Upload the Image </h1><img class="rounded-circle" src="/assets/img/night-g82f9f0b8c_1920.jpg" style="width: 200px;height: 200px;" />
                             <p style="color: white;font-size: 14px;text-align: center;margin: 50px;">RePsychle uses MongoDB to not only host our database but to also host the images that are uploaded. <br /><br />This is accomplished by using a <em>middleware</em> known as <em>Multer</em> to help store and retrieve files.<br /><br />Please be aware that for the current time, images cannot be altered or replaced once uploaded to RePsychle.<br /><br />When you delete an entry, the image is also removed from the database / server.<br /><br />By uploading an Image to RePsychle, you agree that the image that you are submitting is your own and not of malicious or ill-intent to the website.</p>
-                            <h1 style="color: white;font-size: 28px;text-align: center;margin: 50px;">Step 3) Submit your Entry  </h1><img class="rounded-circle" src="at-gd189fff3b_1920.jpg" style="width: 200px;height: 200px;" />
+                            <h1 style="color: white;font-size: 28px;text-align: center;margin: 50px;">Step 3) Submit your Entry  </h1><img class="rounded-circle" src="/assets/img/at-gd189fff3b_1920.jpg" style="width: 200px;height: 200px;" />
                             <p style="color: white;font-size: 14px;text-align: center;margin: 50px;">Once you have submitted your entry, you will be able to make changes to this later. If you would like, you can also delete the entry from the database.</p>
                         </div>
                     </div >
@@ -259,7 +259,7 @@ Date:         4/23/2022
                 <div class="col-md-7" style="margin: 0px;margin-top: 5px;padding: 5px;height: 50%;">
 
                     <div class="card" style="padding: 25px; margin: 25px; background: rgba(40,45,50,0.8);">
-                        <form method="POST">
+                        <form method="POST" enctype="multipart/form-data">
                             <img class="card-img-top" src="https://repsychle-production-new.herokuapp.com/image/4566ec26bb131ea3307afe7122e91de9.jpg" alt="Card image cap">
                             <div class="card-body">
                                 <h1 class="card-title" for="objectName" style="color: #7bbc7e">Object:</h1>
@@ -269,14 +269,25 @@ Date:         4/23/2022
                                 <textarea rows="3" cols="40" class="form-control" type="text" id="objectDescription" name="objectDescription" required aria-describedby="objectDescriptionHelp" style="margin-bottom: 50px; margin-top:50px;" placeholder="Please Enter an Object Description">{{recycling.objectDescription}}</textarea>
                                 <hr style = "color: whitesmoke">
                                 <h3 class="card-text" for="objectDisposalMethod" style="color: #7bbc7e">Disposal Method:</h3>
-                                <input class="form-control" type="text" id="objectDisposalMethod" name="objectDisposalMethod" required aria-describedby="objectDisposalMethodHelp" style="margin-bottom: 50px; margin-top:50px;" placeholder="Please Enter an Object Disposal Method" value="{{recycling.objectDisposalMethod}}">
+                                <select class="form-control" type="text" id="objectDisposalMethod" name="objectDisposalMethod" required aria-describedby="objectDisposalMethodHelp" style="margin-bottom: 50px; margin-top:50px;" placeholder="Please Enter an Object Disposal Method">
+                                    <option>RECYCLE</option>
+                                    <option>GARBAGE</option>
+                                    <option>COMPOST</option>
+                                    <option>HAZARDOUS</option>
+                                </select>
                                 <h3 class="card-text" for="objectEcoScore" style="color: #7bbc7e">EcoScore: </h3>
-                                <input class="form-control" type="text" id="objectEcoScore" name="objectEcoScore" required aria-describedby="objectEcoScoreHelp" style="margin-bottom: 50px; margin-top:50px;" placeholder="Please Enter an EcoScore" value="{{recycling.objectEcoScore}}">
+                                <select class="form-control" type="text" id="objectEcoScore" name="objectEcoScore" required aria-describedby="objectEcoScoreHelp" style="margin-bottom: 50px; margin-top:50px;" placeholder="Please Enter an EcoScore">
+                                    <option>VERY HIGH</option>
+                                    <option>HIGH</option>
+                                    <option>MEDIUM</option>
+                                    <option>LOW</option>
+                                    <option>VERY LOW</option>
+                                </select>
                                 <hr style = "color: whitesmoke">
                                 <h5 class="card-text" for="objectLong" style="color: #7bbc7e">Object Longitude:</h5>
-                                <input class="form-control" type="number" id="objectLong" name="objectLong" required aria-describedby="objectLongHelp" style="margin-bottom: 50px; margin-top:50px;" placeholder="Please Enter an Object Longitude" >
+                                <input class="form-control" step="any" type="number" id="objectLong" name="objectLong" required aria-describedby="objectLongHelp" style="margin-bottom: 50px; margin-top:50px;" placeholder="Please Enter an Object Longitude" >
                                 <h5 class="card-text" for="objectLat" style="color: #7bbc7e">Object Latitude: </h5>
-                                <input class="form-control" type="number" id="objectLat" name="objectLat" required aria-describedby="objectLatHelp" style="margin-bottom: 50px; margin-top:50px;" placeholder="Please Enter an Object Latitude" >
+                                <input class="form-control" step="any" type="number" id="objectLat" name="objectLat" required aria-describedby="objectLatHelp" style="margin-bottom: 50px; margin-top:50px;" placeholder="Please Enter an Object Latitude" >
                                 <hr style="color: whitesmoke">
                                 <h5 class="card-text" for="profile_id" style="color: #7bbc7e">Profile ID:</h5>
                                 <script>
@@ -310,6 +321,8 @@ Date:         4/23/2022
                                 </select>
 
 
+
+
                                 <div class="custom-file mb-3" >
                                     <input type="file" name="file" id="file" class="custom-file-input">
                                     <label for="file" class="custom-file-label">Choose File</label>
@@ -323,9 +336,67 @@ Date:         4/23/2022
 
                 </div>
 
-
+                <div class="card col-md-12" style="padding: 25px;padding-top: 25px;text-align: center;background: rgba(40,45,50,0.8);">
+                    <div class="card-body" style="background: rgb(40, 45, 50);"><img src="/assets/img/repsychle_logo 1 shadow.png" style="width: 250px;padding-top: 15px;padding-bottom: 15px;" />
+                        <div id="trash_ecoScore_div">
+                            <h1 id="trash_ecoScore_label" class="name" style="color: white;font-size: 28px;">EcoScore Rating<br /></h1><img class="rounded-circle" src="/assets/img/trees-g447be9606_1920.jpg" style="width: 200px;height: 200px;" />
+                            <p style="color: white;font-size: 14px;text-align: center;margin: 50px;">In order to make an entry into the RePsychle Database, selecting an EcoScore is important.<br /><br />Read on what is important when it comes to the EcoScore of an Object.</p>
+                            <div id="trash_ecoScore_accordion" class="accordion" role="tablist">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" role="tab" style><button id="trash_ecoScore_veryHigh" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#trash_ecoScore_accordion .item-1" aria-expanded="false" aria-controls="trash_ecoScore_accordion .item-1">VERY HIGH</button></h2>
+                                    <div class="accordion-collapse collapse item-1" role="tabpanel" data-bs-parent="#trash_ecoScore_accordion">
+                                        <div class="accordion-body">
+                                            <p class="mb-0">An object that has been rated <em>VERY</em><em>HIGH</em> has an extremely positive impact on the environment. This object is assumed to have been created with minimal impact on the atmosphere, is composed of only one or a few materials, and can be passed on to the next phase of its life cycle in a positive manner if disposed of using the provided disposal method.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" role="tab"><button id="trash_ecoScore_high" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#trash_ecoScore_accordion .item-2" aria-expanded="false" aria-controls="trash_ecoScore_accordion .item-2">HIGH</button></h2>
+                                    <div class="accordion-collapse collapse item-2" role="tabpanel" data-bs-parent="#trash_ecoScore_accordion">
+                                        <div class="accordion-body">
+                                            <p class="mb-0">An object that has been rated <em>HIGH</em> has a positive impact on the environment. This object is assumed to have been created with a low impact on the atmosphere, is composed of a few materials, and can be passed on to the next phase of its life cycle in a specific way if disposed of properly.<br /></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" role="tab"><button id="trash_ecoScore_medium" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#trash_ecoScore_accordion .item-3" aria-expanded="false" aria-controls="trash_ecoScore_accordion .item-3">MEDIUM</button></h2>
+                                    <div class="accordion-collapse collapse item-3" role="tabpanel" data-bs-parent="#trash_ecoScore_accordion">
+                                        <div class="accordion-body">
+                                            <p class="mb-0">An object that has been rated <em>MEDIUM </em>has a moderate impact on the environment. This object is assumed to have been created with a measurable impact on the atmosphere, is composed of more than a few materials, and can be passed on to the next phase of its life cycle if cleaned, prepared, and disposed of in a specific manner.<br /></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" role="tab"><button id="trash_ecoScore_low" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#trash_ecoScore_accordion .item-4" aria-expanded="false" aria-controls="trash_ecoScore_accordion .item-4">LOW</button></h2>
+                                    <div class="accordion-collapse collapse item-4" role="tabpanel" data-bs-parent="#trash_ecoScore_accordion">
+                                        <div class="accordion-body">
+                                            <p class="mb-0">An object that has been rated <em>LOW </em>has a heavy impact on the environment. This object is assumed to have been created to be reactive with the atmosphere, is composed of various compounds, and can be passed on to the next phase of its life cycle if cleaned, handled, prepared, and disposed of in a specific manner. Even if this object is disposed of properly, this object should be avoided unless necessary.<br /></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" role="tab"><button id="trash_ecoScore_veryLow" class="accordion-button" data-bs-toggle="collapse" data-bs-target="#trash_ecoScore_accordion .item-5" aria-expanded="true" aria-controls="trash_ecoScore_accordion .item-5">VERY LOW</button></h2>
+                                    <div class="accordion-collapse collapse show item-5" role="tabpanel" data-bs-parent="#trash_ecoScore_accordion">
+                                        <div class="accordion-body">
+                                            <p class="mb-0">An object that has been rated VERY <em>LOW </em>has an extreme impact on the environment. This object is assumed to have been created to be reactive or corrosive to the atmosphere, is composed of various compounds or formulas, and can be passed on to the next phase of its life cycle if cleaned, handled, prepared, and disposed of in a very specific manner. Even if this object is disposed of properly, this object should be avoided unless necessary. Follow all warnings, directions, and disposal methods.<br /></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h1 id="trash_ecoScore_label-1" class="name" style="color: white;font-size: 28px;">Geographic Location<br /></h1><img class="rounded-circle" src="/assets/img/google-maps-g8ae458bff_1920.jpg" style="width: 200px;height: 200px;" />
+                        <p style="color: white;font-size: 14px;text-align: center;margin: 50px;">By collecting this information, this information will be used to help improve the RePsychle Database.<br /><br />As the Beta Continues, there will be multiple iterations to how this data is used.<br /><br />Please note that this information is deleted when an object is removed from the RePsychle Database through the creator&#39;s editing functionality or the administrator.<br /><br /></p>
+                        <h1 id="trash_ecoScore_label-3" class="name" style="color: white;font-size: 28px;">Object Longitude<br /></h1><img class="rounded-circle" src="/assets/img/travel-g7c2d49604_1920.jpg" style="width: 200px;height: 200px;" />
+                        <p style="color: white;font-size: 14px;text-align: center;margin: 50px;">Longitude refers to the position on Earth that is relative to the x-axis.<br /></p>
+                        <h1 id="trash_ecoScore_label-2" class="name" style="color: white;font-size: 28px;">Object Latitude<br /></h1><img class="rounded-circle" src="/assets/img/compass-g95b53de55_1920.jpg" style="width: 200px;height: 200px;" />
+                        <p style="color: white;font-size: 14px;text-align: center;margin: 50px;">Latitude refers to the position on Earth that is relative to the y-axis.<br /></p>
+                    </div>
+                </div>
 
             </div>
+
+
+
 
 
         </div>

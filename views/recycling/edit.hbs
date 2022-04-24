@@ -218,6 +218,8 @@
                             <h3 class="card-text" style="color: #7bbc7e">EcoScore: </h3>
                             <p class="card-text" style = "color: whitesmoke">{{recycling.objectEcoScore}}</p>
                             <hr style = "color: whitesmoke">
+
+
                             <h5 class="card-text" style="color: #7bbc7e">Object Longitude:</h5>
                             <p class="card-text" style = "color: whitesmoke">{{recycling.objectLong}}</p>
 
@@ -325,9 +327,24 @@
                             <textarea rows="3" cols="40" class="form-control" type="text" id="objectDescription" name="objectDescription" required aria-describedby="objectDescriptionHelp" style="margin-bottom: 50px; margin-top:50px;" placeholder="Please Enter an Object Description">{{recycling.objectDescription}}</textarea>
                             <hr style = "color: whitesmoke">
                             <h3 class="card-text" for="objectDisposalMethod" style="color: #7bbc7e">Disposal Method:</h3>
-                            <input class="form-control" type="text" id="objectDisposalMethod" name="objectDisposalMethod" required aria-describedby="objectDisposalMethodHelp" style="margin-bottom: 50px; margin-top:50px;" placeholder="Please Enter an Object Disposal Method" value="{{recycling.objectDisposalMethod}}">
-                            <h3 class="card-text" for="objectEcoScore" style="color: #7bbc7e">EcoScore: </h3>
-                            <input class="form-control" type="text" id="objectEcoScore" name="objectEcoScore" required aria-describedby="objectEcoScoreHelp" style="margin-bottom: 50px; margin-top:50px;" placeholder="Please Enter an EcoScore" value="{{recycling.objectEcoScore}}">
+                            <select class="form-control" type="text" id="objectDisposalMethod" name="objectDisposalMethod" required aria-describedby="objectDisposalMethodHelp" style="margin-bottom: 50px; margin-top:50px;" placeholder="Please Enter an Object Disposal Method">
+
+                                <option>VERY HIGH</option>
+                                <option>HIGH</option>
+                                <option>MEDIUM</option>
+                                <option>LOW</option>
+                                <option>VERY LOW</option>
+
+
+
+                            </select>                            <h3 class="card-text" for="objectEcoScore" style="color: #7bbc7e">EcoScore: </h3>
+                            <select class="form-control" type="text" id="objectEcoScore" name="objectEcoScore" required aria-describedby="objectEcoScoreHelp" style="margin-bottom: 50px; margin-top:50px;" placeholder="Please Enter an EcoScore">
+                                <option>RECYCLE</option>
+                                <option>GARBAGE</option>
+                                <option>COMPOST</option>
+                                <option>HAZARDOUS</option>
+                            </select>
+
                             <hr style = "color: whitesmoke">
                             <h5 class="card-text" for="objectLong" style="color: #7bbc7e">Object Longitude:</h5>
                             <input class="form-control" type="number" id="objectLong" name="objectLong" required aria-describedby="objectLongHelp" style="margin-bottom: 50px; margin-top:50px;" placeholder="Please Enter an Object Longitude" value="{{recycling.objectLong}}">
