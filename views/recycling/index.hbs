@@ -238,14 +238,15 @@
 
                                 <a href="/recycling/view/{{this._id}}" class="btn btn-primary" style="background: #7bbc7e">View Entry</a>
                                 <hr>
-                                {{#if this.profile_id}}
+                                {{#if user.username}}
                                    <a href="/recycling/edit/{{this._id}}"
                                            class="btn btn-primary" style="background: #7bbc7e">Edit</a>
                                         <a href="/recycling/delete/{{this._id}}"
                                            class="btn btn-danger"
                                         >Delete</a>
+                                    <hr>
                                 {{/if}}
-                                <hr>
+
                                 <p class="card-text" style="color: white;"><small class="text-muted">Created / Modified on: {{this.createdAt}}</small></p>
 
 
