@@ -36,6 +36,7 @@ router.get('/register', (req, res, next) => {
 /* POST Register page. */
 router.post('/register', (req, res, next) => {
   // Create a new user based on the information from the page
+  console.log(req.body.username);
   User.register(new User({
     username: req.body.username,
     profile: req.body.profile,
@@ -47,14 +48,14 @@ router.post('/register', (req, res, next) => {
       if (err) {
         console.log(err);
         // take user back and reload register page
-        return res.redirect('/register');
+        return res.redirect('/registers');
       }
       else {
-
+        res.redirect('https://www.google.com/');
 
         // log user in
         req.login(newUser, (err) => {
-          res.redirect('/recycling');
+          res.redirect('https://www.google.com/');
         });
       }
     });

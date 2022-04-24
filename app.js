@@ -60,7 +60,13 @@ var usersRouter = require('./routes/users');
 var reyclingRouter = require('./routes/recycling');
 
 
+ // Import passport modules
+ const passport = require('passport');
+ const session = require('express-session');
 
+
+ // Import globals file
+ const config = require('./config/globals');
 
 var app = express();
 
@@ -76,6 +82,161 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+ // Middleware for Multer
+
+ app.use(bodyparser.json())
+ app.use(methodOverride('_method'))
+
+ // view engine setup
+ app.set('views', path.join(__dirname, 'views'));
+ app.set('view engine', 'hbs');
+
+ app.use(logger('dev'));
+ app.use(express.json());
+ app.use(express.urlencoded({ extended: false }));
+ app.use(cookieParser());
+ app.use(express.static(path.join(__dirname, 'public')));
+
+ // Configure passport module https://www.npmjs.com/package/express-session
+ // Used to salt
+ app.use(session({
+     secret: 'repsychlewkirschn', //Secret if production
+     resave: false,
+     saveUninitialized: false
+ }));
+
+ // Initialize passport
+ app.use(passport.initialize());
+ app.use(passport.session());
+
+ // Link passport to the user model
+ const User = require('./models/user');
+ passport.use(User.createStrategy());
+
+ // Set passport to write/read user data to/from session object
+ passport.serializeUser(User.serializeUser());
+ passport.deserializeUser(User.deserializeUser());
+
+ // Register router objects
+ app.use('/', indexRouter);
+ app.use('/Recycling', reyclingRouter);
+
+ // MongoDB Connection
+
+ let connectionString = config.db;
+
+
+ // Init gfs
+
+
+ const conn = mongoose.createConnection(connectionString);
+ let gfs;
+ conn.once('open', function() {
+     gfs = Grid(conn.db, mongoose.mongo);
+     gfs.collection('uploads');
+ })
+
+
+ // Storage Engine
+
+ const storage = new GridFsStorage({
+     url: connectionString,
+     file: (req, file) => {
+         return new Promise((resolve, reject) => {
+             crypto.randomBytes(16, (err, buf) => {
+                 if (err) {
+                     return reject(err);
+                 }
+                 const filename = buf.toString('hex') + path.extname(file.originalname);
+                 const fileInfo = {
+                     filename: filename,
+                     bucketName: 'uploads'
+                 };
+                 resolve(fileInfo);
+             });
+         });
+     }
+ });
+ const upload = multer({ storage });
+
+
+
+
+ // Use the connect method, and the two handlers to try to connect to the DB
+ mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true })
+     .then((message) => {
+         console.log('Connected successfully!');
+         gfs = Grid(this.db, mongoose.mongo);
+         gfs.collection('uploads');
+     })
+     .catch((error) => {
+         console.log(`Error while connecting! ${error}`);
+     });
+
+ // HBS Helper Method to select values from dropdown lists
+ const hbs = require('hbs');
+ const e = require('express');
+ const Recycle = require("./models/recycling");
+
+
+ // function name and helper function with parameters
+ hbs.registerHelper('createOption', (currentValue, selectedValue) => {
+     // initialize selected property
+     var selectedProperty = '';
+     // if values are equal set selectedProperty accordingly
+     if (currentValue == selectedValue) {
+         selectedProperty = 'selected';
+     }
+     // return html code for this option element
+     // return new hbs.SafeString('<option '+ selectedProperty +'>' + currentValue + '</option>');
+     return new hbs.SafeString(`<option ${selectedProperty}>${currentValue}</option>`);
+ });
+
+ // helper function to format date values
+ hbs.registerHelper('toShortDate', (longDateValue) => {
+     return new hbs.SafeString(longDateValue.toLocaleDateString('en-CA'));
+ });
+
+ // app.get('/upload', (req, res) => {
+ //
+ //     gfs.files.find().toArray((err, files) => {
+ //
+ //         if(!files || files.length === 0) {
+ //            res.render('index', {files: false});
+ //             }
+ //         else {
+ //                 // Files exist
+ //
+ //             files.map(file => {
+ //                 if(file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
+ //                     file.isImage = true;
+ //                 }
+ //                 else {
+ //                     file.isImage = false;
+ //                 }
+ //             });
+ //             res.render('upload', {files: files});
+ //
+ //             }
+ //
+ //
+ //
+ // })});
+ //
+ // app.post('/upload', upload.single('file'), (req,res) => {
+ //     res.json({file: req.file, fileName: req.file.filename});
+ //
+ // })
+ // add reusable middleware function to inject it in our handlers below that need authorization
+ function IsLoggedIn(req,res,next) {
+     if (req.isAuthenticated()) {
+         return next();
+     }
+     res.redirect('/login');
+ }
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
