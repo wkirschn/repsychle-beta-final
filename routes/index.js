@@ -105,5 +105,55 @@ router.get('/logout', (req, res, next) => {
   res.redirect('/login');
 });
 
+/*
+    Static Pages
+ */
+
+/* GET About page. */
+router.get('/about', (req, res, next) => {
+  res.render('about');
+});
+
+/* GET Contact page. */
+router.get('/contact', (req, res, next) => {
+  res.render('contact');
+});
+
+/* GET How page. */
+router.get('/how', (req, res, next) => {
+  res.render('how');
+});
+
+/* GET Repsychle_Blog page. */
+router.get('/repsychle_blog', (req, res, next) => {
+  res.render('repsychle_blog');
+});
+
+/* GET 301 page. */
+router.get('/301', (req, res, next) => {
+  res.render('301');
+});
+
+/* GET 401 page. */
+router.get('/401', (req, res, next) => {
+  res.render('401');
+});
+
+/* GET 404 page. */
+router.get('/404', (req, res, next) => {
+  res.render('404');
+});
+
+/* GET 500 page. */
+router.get('/500', (req, res, next) => {
+  res.render('500');
+});
+
+/* GET 502 page. */
+router.get('/502', (req, res, next) => {
+  res.render('502');
+});
+
+
 
 module.exports = router;
