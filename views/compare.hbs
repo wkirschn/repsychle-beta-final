@@ -1,9 +1,59 @@
+<h1>
+    Register
+</h1>
+
+{{#if messages}}
+    <div class="alert alert-danger">
+        Invalid credentials
+    </div>
+{{else}}
+    <div class="alert alert-info">
+        Please enter your credentials to Register for RePsychle!
+    </div>
+{{/if}}
 
 <form method="post" >
 
 
+    <fieldset class="form-group" style="width: auto">
+        <label for="firstName" class="col-2 control-label">
+            First Name: *
+        </label>
+        <input
+                name="firstName"
+                id="firstName"
+                required
+                type="text"
+                placeholder="Enter a First Name"
+        />
+    </fieldset>
+
+    <fieldset class="form-group" style="width: auto">
+        <label for="lastName" class="col-2 control-label">
+            Last Name: *
+        </label>
+        <input
+                name="lastName"
+                id="lastName"
+                required
+                type="text"
+                placeholder="Enter a Last Name"
+        />
+    </fieldset>
 
 
+    <fieldset class="form-group" style="width: auto">
+        <label for="username" class="col-2 control-label">
+            Email Address: *
+        </label>
+        <input
+                name="username"
+                id="username"
+                required
+                type="email"
+                placeholder="Enter a Valid Email Address"
+        />
+    </fieldset>
 
 
 

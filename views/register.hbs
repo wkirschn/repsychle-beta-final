@@ -80,144 +80,7 @@ Date:         4/23/2022
     <link rel="stylesheet" href="/assets/css/styles.css">
     <link rel="stylesheet" href="/assets/css/Team-Grid.css">
 </head>
-<header style="font-size: 32px; padding-bottom: 50px;">
-    <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button fixed;" style="height: auto; color: #ffffff; background: #001122;">
-        <div class="container-fluid">
-            <div class="collapse navbar-collapse justify-content-center" id="navcol-1">
-                <h1 style="font-size: 18px; color: white; width: auto; text-align: center;">
-                    <strong>RePsychle is currently in development. Please provide your feedback to </strong><a href="mailto:repsychle@wkirschn.ca" style="font-size: 18px; width: auto; text-align: center;">repsychle@wkirschn.ca</a>
-                </h1>
-            </div>
-        </div>
-    </nav>
-    <nav
-            class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button fixed; fixed-top; logged-out;"
-            style="height: auto; color: #ffffff; background: rgb(40, 45, 50); border-style: none; border-color: #66d7d7; border-bottom-style: none; padding-top: 0px; padding-bottom: 0px; width: auto;"
-    >
-        <div class="container-fluid">
-            <a
-                    class="navbar-brand justify-content-center"
-                    data-bs-toggle="tooltip"
-                    data-bss-tooltip=""
-                    href="https://repsychle-beta-final.herokuapp.com/"
-                    style="margin: 30px; height: auto; width: auto; transform: perspective(0px) rotate(0deg) scale(0.88) skew(0deg); transform-origin: center;"
-            >
-                &nbsp;
-                <img
-                        class="justify-content-center rounded-3"
-                        src="/assets/img/repsychle_logo%201%20shadow.png"
-                        style="
-                                text-align: center; /*transform: perspective(0px) scale(1);*/ /*transform-style: preserve-3d;*/
-                                transform: perspective(0px) scale(1);
-                                transform-style: preserve-3d;
-                                padding: 10px;
-                                margin: auto;
-                                margin-right: auto;
-                                padding-top: 10px;
-                                margin-top: auto;
-                                margin-bottom: auto;
-                                margin-left: auto;
-                                height: auto;
-                                width: 160px;
-                            "
-                        href="https://repsychle-beta-final.herokuapp.com/"
-                />
-            </a>
-            <button data-bs-toggle="collapse" class="navbar-toggler navbar-dark" data-bs-target="#navcol-2" style="margin: auto;">
-                <span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon" style="box-shadow: 0px 0px;"></span>
-            </button>
-            <div
-                    class="collapse navbar-collapse text-center justify-content-center rounded-3"
-                    id="navcol-2"
-                    style="
-                            text-align: center; /*transform: perspective(0px) scale(1);*/ /*background: linear-gradient(170deg, #001122, #011c2e 14%, #003346 28%, #004b5b 40%, #00646c 49%, #077e76 65%, #36977c 75%, #63b07e 88%, #7bbc7e);*/ /*transform-style: preserve-3d;*/ /*box-shadow: 0px 0px;*/
-                            transform: perspective(0px) scale(1);
-                            background: linear-gradient(145deg, #7bbc7e 44%, #36977c 56%, #63b07e 71%, #077e76 79%, #00646c 96%) fixed;
-                            transform-style: preserve-3d;
-                            box-shadow: 10px -3px 20px 3px #545454;
-                            height: auto;
-                            width: auto;
-                            margin-right: 25px;
-                        "
-            >
-                <a
-                        class="nav-link nav-pills rounded-pill justify-content-center"
-                        style="color: #ffffff; margin: 15px; padding: 8px 25px 8px 16px; padding-right: 25px; width: auto; font-size: 14px; padding-left: 25px;"
-                        href="https://repsychle-beta-final.herokuapp.com/repsychle_blog"
-                        target="_top"
-                >
-                    <i class="fa fa-newspaper-o"></i>&nbsp;Blog
-                </a>
-                <a
-                        class="nav-link nav-pills rounded-pill justify-content-center"
-                        style="color: #ffffff; margin: 15px; padding: 8px 25px 8px 16px; padding-right: 25px; width: auto; font-size: 14px; padding-left: 25px;"
-                        href="https://repsychle-beta-final.herokuapp.com/about"
-                        target="_top"
-                >
-                    <i class="fa fa-exclamation-circle"></i>&nbsp;More Info
-                </a>
 
-
-
-
-                {{#if user}}
-
-                    <a
-                            class="nav-link nav-pills rounded-pill justify-content-right"
-                            style="color: #ffffff; margin: 15px; padding: 8px 25px 8px 16px; padding-right: 25px; width: auto; font-size: 14px; padding-left: 25px;"
-                            href="https://repsychle-beta-final.herokuapp.com/account"
-                            target="_top"
-                    >
-                        <i class="far fa-user-circle"></i>{{user.username}}
-                    </a>
-
-
-
-
-                    <a
-                            class="nav-link nav-pills rounded-pill justify-content-center"
-                            style="color: #ffffff; margin: 15px; padding: 8px 25px 8px 16px; padding-right: 25px; width: auto; font-size: 14px; padding-left: 25px;"
-                            href="https://repsychle-beta-final.herokuapp.com/register"
-                            target="_top"
-                    >
-                        <i class="fa fa-sign-out"></i>&nbsp;Logout
-                    </a>
-
-                {{else}}
-                    <a
-                            class="nav-link nav-pills rounded-pill justify-content-center"
-                            style="color: #ffffff; margin: 15px; padding: 8px 25px 8px 16px; padding-right: 25px; width: auto; font-size: 14px; padding-left: 25px;"
-                            href="https://repsychle-beta-final.herokuapp.com/register"
-                            target="_top"
-                    >
-                        <i class="fas fa-clipboard-check"></i>&nbsp;Register
-                    </a>
-                    <a
-                            class="nav-link nav-pills rounded-pill justify-content-center modal-trigger"
-                            style="color: #ffffff; margin: 15px; padding: 8px 25px 8px 16px; padding-right: 25px; width: auto; font-size: 14px; padding-left: 25px;"
-                            href="https://repsychle-beta-final.herokuapp.com/login"
-                            target="_top"
-                            data-target="modal-login"
-                    >
-                        <i class="fa fa-sign-in"></i>&nbsp;Login
-                    </a>
-
-
-                {{/if}}
-
-
-
-
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"></li>
-                    <li class="nav-item"></li>
-                    <li class="nav-item"></li>
-                    <li class="nav-item"></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</header>
 <body class="background-attachment: fixed;" style="/*transform: perspective(0px) scale(1);*//*background: linear-gradient(170deg, #001122, #011c2e 14%, #003346 28%, #004b5b 40%, #00646c 49%, #077e76 65%, #36977c 75%, #63b07e 88%, #7bbc7e);*//*transform-style: preserve-3d;*//*box-shadow: 0px 0px;*/transform: perspective(0px) scale(1);background: repeating-linear-gradient(180deg, #001122, #011c2e 7%, #003346 21%, #004b5b 40%, #00646c 49%, #077e76 65%, #36977c 75%, #63b07e 88%, #7bbc7e) fixed;transform-style: preserve-3d;box-shadow: 0px 0px;height: 100%;border-style: none;">
 
 
@@ -243,7 +106,7 @@ Date:         4/23/2022
                     href="https://repsychle-beta-final.herokuapp.com/"
                     style="margin: 30px; height: auto; width: auto; transform: perspective(0px) rotate(0deg) scale(0.88) skew(0deg); transform-origin: center;"
             >
-                &nbsp;
+
                 <img
                         class="justify-content-center rounded-3"
                         src="/assets/img/repsychle_logo%201%20shadow.png"
@@ -368,7 +231,15 @@ Date:         4/23/2022
                 <h1 class="name" style="color: white;font-size: 34px;text-align: center;"><img src="/assets/img/repsychle_logo%201%20shadow.png" style="width: 350px;padding-top: 25px;padding-bottom: 25px;"><br></h1>
                 <div>
                     <h1 style="font-size: 34px;text-align: center;color: rgb(255,255,255);">Registration</h1>
-
+                    {{#if messages}}
+                        <div class="alert alert-danger">
+                            Invalid credentials
+                        </div>
+                    {{else}}
+                        <div class="alert alert-info">
+                            Please enter your credentials to Register for RePsychle!
+                        </div>
+                    {{/if}}
 
 
 
@@ -389,6 +260,7 @@ Date:         4/23/2022
                                 </div>
 
                             </div>
+                            <hr style="color:white;"/>
                             <div class="mb-3" for="lastName" style="text-align: left;">
 
                                 <label for="lastName" class="form-label text-start" style="color: white;font-size: 24px;text-align: left;">Last Name *</label>
@@ -401,6 +273,7 @@ Date:         4/23/2022
                                 </div>
 
                             </div>
+                            <hr style="color:white;"/>
                             <div class="mb-3" for="username" style="text-align: left;"><label for="username" class="form-label text-start" style="color: white;font-size: 24px;text-align: left;">Email Address *</label>
 
                                 <input class="form-control" type="email" id="username" name="username" required aria-describedby="emailHelp" style="margin-bottom: 50px; margin-top:50px;" placeholder="Please Enter Your Email Address">
@@ -412,6 +285,7 @@ Date:         4/23/2022
                                 </div>
 
                             </div>
+                            <hr style="color:white;"/>
                             <div class="mb-3" for="password" style="text-align: left;"><label for="password" class="form-label text-start" for="password" style="color: white;font-size: 24px;text-align: left;">Enter Password *</label>
 
                                 <input class="form-control" name="password" type="password" id="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$" required aria-describedby="passwordHelp" style="margin-bottom: 50px; margin-top:50px;" placeholder="Please Enter a Password">
@@ -423,6 +297,7 @@ Date:         4/23/2022
                                 </div>
 
                             </div>
+                            <hr style="color:white;"/>
                             <div class="mb-3" for="confirm" style="text-align: left;"><label for="confirm" class="form-label text-start" for="confirm" style="color: white;font-size: 24px;text-align: left;">Confirm Password *</label>
 
                                 <input class="form-control" type="password" name="confirm" id="confirm" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$" aria-describedby="passwordHelp" style="margin-bottom: 50px; margin-top:50px;" placeholder="Please Re-Enter the Same Password">
@@ -436,7 +311,9 @@ Date:         4/23/2022
                             </div>
                             <div class="form-check text-center" style="margin: 25px;margin-top: 25px;text-align: center;"><input class="form-check-input" type="checkbox" id="contact_checkbox" style="margin-top: 15px;padding: 5px;" value="agree_contact_true"><label class="form-check-label" id="contact_checkbox1" for="contact_checkbox" style="color: white;font-size: 16px;text-align: center;margin-top: 0px;">I agree that by using this Contact Form, I am aware that the provided information, content, and context of this form of communication may be monitored by the Owner of RePsychle for malice.</label></div>
 
-                            <hr />
+                            <hr style="color:white;"/>
+                            <div class="btn-group" role="group"><button class="btn btn-primary" type="submit" style="background: #7BBC7E;border-style: double;border-color: #7BBC7E;box-shadow: 0px 0px, 0px 0px;margin: 25px;">Sign Me Up!</button></div>
+
                             <p style="color: white;font-size: 16px;text-align: center;margin-top: 0px;">
                                 Already have an account?
                                 <a href="/login" title="Login">
