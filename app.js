@@ -52,7 +52,14 @@ const methodOverride = require('method-override')
 
 // Create router objects
 var indexRouter = require('./routes/index');
-var reyclingRouter = require('./routes/recycling');
+var recyclingRouter = require('./routes/recycling');
+
+var compostRouter = require('./routes/compost')
+var garbageRouter = require('./routes/garbage')
+var hazardousRouter = require('./routes/hazardous')
+
+
+// var reyclingRouter = require('./routes/recycling');
 
 // Import passport modules
 const passport = require('passport');
@@ -101,7 +108,15 @@ passport.deserializeUser(User.deserializeUser());
 
 // Register router objects
 app.use('/', indexRouter);
-app.use('/Recycling', reyclingRouter);
+app.use('/recycling', recyclingRouter);
+app.use('/garbage', garbageRouter);
+app.use('/compost', compostRouter);
+app.use('/hazardous', hazardousRouter);
+
+
+
+
+
 
 // MongoDB Connection
 
@@ -160,6 +175,9 @@ const hbs = require('hbs');
 const e = require('express');
 
 const Recycle = require("./models/recycling");
+const Compost = require("./models/compost");
+const Garbage = require("./models/garbage");
+const Hazardous = require("./models/hazardous");
 
 // function name and helper function with parameters
 hbs.registerHelper('createOption', (currentValue, selectedValue) => {
@@ -217,9 +235,12 @@ function IsLoggedIn(req,res,next) {
     res.redirect('/login');
 }
 
+/*
+        Recycling Database
+ */
 
 
-
+/* GET the Object being added to the Database - Recycle */
 app.get('/recycling/add', IsLoggedIn, (req, res) => {
 
     res.render('recycling/add', { title: 'Add a New Object to the RePsychle Database!', user: req.user });
@@ -242,87 +263,7 @@ app.get('/recycling/add', IsLoggedIn, (req, res) => {
 
     })});
 
-
-// GET handler for Edit operations
-app.get('/recycling/edit/:_id', IsLoggedIn, (req, res, next) => {
-    // Find the Recycling Object by ID
-    // Find available courses
-    // Pass them to the view
-    Recycle.findById(req.params._id, (err, recycling) => {
-        console.log(req.params._id);
-        console.log(this.objectName);
-        console.log(req.body.status);
-        if (err) {
-            console.log(err);
-        }
-        else {
-            res.render('recycling/edit', {
-                title: 'Edit:',
-                recycling: recycling,
-                user: req.user,
-            });
-
-        }
-    });
-});
-
-app.get('/recycling/delete/:_id', IsLoggedIn, (req, res, next) => {
-    // call remove method and pass id as a json object
-    Recycle.remove({ _id: req.params._id }, (err) => {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            res.redirect('/recycling')
-        }
-    })
-});
-
-// POST handler for Edit operations
-app.post('/recycling/edit/:_id', IsLoggedIn, (req, res,next) => {
-    // find Recycling Object based on ID
-    // try updating with form values
-    // redirect to /recycling
-
-
-    console.log(req.params._id);
-    Recycle.findByIdAndUpdate(req.params._id , {
-        _id: req.params._id,
-        objectName: req.body.objectName,
-        objectDescription: req.body.objectDescription,
-        objectEcoScore: req.body.objectEcoScore,
-        objectDisposalMethod: req.body.objectDisposalMethod,
-        objectLat: req.body.objectLat,
-        objectLong: req.body.objectLong,
-        profile_id: req.body.profile_id,
-
-
-    }, (err, Recycle) => {
-        if (err) {
-            console.log(err)
-        }
-        else {
-
-
-            app.post('/recycling/edit/:_id', upload.single('file'), (req, res) =>
-            {
-                file: req.file.filename
-            })
-
-
-
-            res.redirect('/recycling');
-        }
-    });
-
-});
-
-
-
-
-
-
-// Add POST handler
+/* POST the Object being added to the Database - Recycle */
 app.post('/recycling/add', IsLoggedIn,  upload.single('file'), (req, res, next) => {
     // use the Recycling module to save data to DB
     // call create method of the model
@@ -363,68 +304,82 @@ app.post('/recycling/add', IsLoggedIn,  upload.single('file'), (req, res, next) 
     });
 });
 
-
-
-
-
-app.post('/upload', upload.single('file'),  (req,res) => {
-    res.json({file: req.file, fileName: req.file.filename});
-
-})
-
-
-app.get('/upload', upload.single('file'),  (req,res) => {
-    res.render('upload');
-
-})
-
-
-
-
-app.get('/files/:filename', (req, res) => {
-    gfs.files.findOne({filename: req.params.filename}, (err, file) => {
-
-
-        //Check for files
-
-        if(!file || file.length === 0) {
-            return res.status(404).json({
-                err: 'No files exist'
-            });
+/* GET the Object being edited on the Database - Recycle */
+app.get('/recycling/edit/:_id', IsLoggedIn, (req, res, next) => {
+    // Find the Recycling Object by ID
+    // Find available courses
+    // Pass them to the view
+    Recycle.findById(req.params._id, (err, recycling) => {
+        console.log(req.params._id);
+        console.log(this.objectName);
+        console.log(req.body.status);
+        if (err) {
+            console.log(err);
         }
+        else {
+            res.render('recycling/edit', {
+                title: 'Edit:',
+                recycling: recycling,
+                user: req.user,
+            });
 
-        // Files exist
-        return res.json(file);
+        }
+    });
+});
+
+/* POST the Object being edited on the Database - Recycle */
+app.post('/recycling/edit/:_id', IsLoggedIn, (req, res,next) => {
+    // find Recycling Object based on ID
+    // try updating with form values
+    // redirect to /recycling
+
+
+    console.log(req.params._id);
+    Recycle.findByIdAndUpdate(req.params._id , {
+        _id: req.params._id,
+        objectName: req.body.objectName,
+        objectDescription: req.body.objectDescription,
+        objectEcoScore: req.body.objectEcoScore,
+        objectDisposalMethod: req.body.objectDisposalMethod,
+        objectLat: req.body.objectLat,
+        objectLong: req.body.objectLong,
+        profile_id: req.body.profile_id,
+
+
+    }, (err, Recycle) => {
+        if (err) {
+            console.log(err)
+        }
+        else {
+
+
+            app.post('/recycling/edit/:_id', upload.single('file'), (req, res) =>
+            {
+                file: req.file.filename
+            })
+
+
+
+            res.redirect('/recycling');
+        }
+    });
+
+});
+
+/* GET the Object being added to the Database - Recycle */
+app.get('/recycling/delete/:_id', IsLoggedIn, (req, res, next) => {
+    // call remove method and pass id as a json object
+    Recycle.remove({ _id: req.params._id }, (err) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.redirect('/recycling')
+        }
     })
 });
 
-app.get('/image/:filename', (req, res) => {
-    gfs.files.findOne({filename: req.params.filename}, (err, file) => {
-
-
-        //Check for files
-
-        if(!file || file.length === 0) {
-            return res.status(404).json({
-                err: 'No files exist'
-            });
-        }
-
-        // Check if image is content type
-        if(file.contentType === 'image/jpeg' || file.contentType === 'img/png') {
-            // Read output to browser
-            const readstream = gfs.createReadStream(file.filename);
-            readstream.pipe(res);
-        } else {
-            res.status(404).json({
-                err: 'Not an image'
-            });
-        }
-
-    })
-});
-
-// GET handler for View More operations
+/* GET View based on ID of Object - Recycling */
 app.get('/recycling/view/:_id', IsLoggedIn, (req, res, next) => {
     // Find the Recycling Object by ID
     // Find available courses
@@ -451,6 +406,244 @@ app.get('/recycling/view/:_id', IsLoggedIn, (req, res, next) => {
     });
 });
 
+
+/*
+        Compost Database
+ */
+
+
+/* GET the Object being added to the Database - Recycle */
+app.get('/compost/add', IsLoggedIn, (req, res) => {
+
+    res.render('compost/add', { title: 'Add a New Object to the RePsychle Database!', user: req.user });
+
+    gfs.files.find().toArray((err, files) => {
+
+
+
+        files.map(file => {
+            if(file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
+                file.isImage = true;
+            }
+            else {
+                file.isImage = false;
+            }
+        });
+        res.render('recycling/add', {files: files});
+
+
+
+    })});
+
+/* POST the Object being added to the Database - Recycle */
+app.post('/compost/add', IsLoggedIn,  upload.single('file'), (req, res, next) => {
+    // use the Recycling module to save data to DB
+    // call create method of the model
+    // and map the fields with data from the request
+    // callback function will return an error if any or a new Recycling object
+
+    app.post('/compost/add', upload.single('file'), (req, res) =>
+    {
+
+    })
+
+
+    Compost.create({
+        objectName: req.body.objectName,
+        objectDescription: req.body.objectDescription,
+        objectEcoScore: req.body.objectEcoScore,
+        objectDisposalMethod: req.body.objectDisposalMethod,
+        objectLong: req.body.objectLong,
+        objectLat: req.body.objectLat,
+        profile_id: req.body.profile_id,
+        file: req.file.filename
+        // file: req.file.filename
+    }, (err, recyclingObject) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            // We can show a successful message by redirecting them to index
+
+            app.post('/compost/add', upload.single('file'), (req, res) =>
+            {
+                /* res.json({file: req.file, fileName: req.file.filename});*/
+            })
+            res.redirect('/compost');
+
+
+        }
+    });
+});
+
+/* GET the Object being edited on the Database - Recycle */
+app.get('/compost/edit/:_id', IsLoggedIn, (req, res, next) => {
+    // Find the Recycling Object by ID
+    // Find available courses
+    // Pass them to the view
+    Compost.findById(req.params._id, (err, composting) => {
+        console.log(req.params._id);
+        console.log(this.objectName);
+        console.log(req.body.status);
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.render('recycling/edit', {
+                title: 'Edit:',
+                composting: composting,
+                user: req.user,
+            });
+
+        }
+    });
+});
+
+/* POST the Object being edited on the Database - Recycle */
+app.post('/compost/edit/:_id', IsLoggedIn, (req, res,next) => {
+    // find Recycling Object based on ID
+    // try updating with form values
+    // redirect to /recycling
+
+
+    console.log(req.params._id);
+    Compost.findByIdAndUpdate(req.params._id , {
+        _id: req.params._id,
+        objectName: req.body.objectName,
+        objectDescription: req.body.objectDescription,
+        objectEcoScore: req.body.objectEcoScore,
+        objectDisposalMethod: req.body.objectDisposalMethod,
+        objectLat: req.body.objectLat,
+        objectLong: req.body.objectLong,
+        profile_id: req.body.profile_id,
+
+
+    }, (err, Compost) => {
+        if (err) {
+            console.log(err)
+        }
+        else {
+
+
+            app.post('/compost/edit/:_id', upload.single('file'), (req, res) =>
+            {
+                file: req.file.filename
+            })
+
+
+
+            res.redirect('/compost');
+        }
+    });
+
+});
+
+/* GET the Object being added to the Database - Recycle */
+app.get('/compost/delete/:_id', IsLoggedIn, (req, res, next) => {
+    // call remove method and pass id as a json object
+    Compost.remove({ _id: req.params._id }, (err) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.redirect('/compost')
+        }
+    })
+});
+
+/* GET View based on ID of Object - Recycling */
+app.get('/compost/view/:_id', IsLoggedIn, (req, res, next) => {
+    // Find the Recycling Object by ID
+    // Find available courses
+    // Pass them to the view
+    Compost.findById(req.params._id, (err, composting) => {
+        console.log(req.params._id);
+        console.log(this.objectName);
+
+        console.log(req.body.status);
+        if (err) {
+            console.log(err);
+        }
+        else {
+
+            res.render('compost/view', {
+                title: 'View: ',
+                composting: composting,
+                user: req.user,
+            });
+
+
+        }
+    });
+});
+
+
+
+
+
+
+/*
+        Image Upload - Multer
+*/
+
+/* GET the file being uploaded as an image - Stand Along */
+app.get('/upload', upload.single('file'),  (req,res) => {
+    res.render('upload');
+
+})
+
+/* Post the file being uploaded as an image - Stand Along */
+app.post('/upload', upload.single('file'),  (req,res) => {
+    res.json({file: req.file, fileName: req.file.filename});
+
+})
+
+/* GET File Upload Page */
+
+app.get('/files/:filename', (req, res) => {
+    gfs.files.findOne({filename: req.params.filename}, (err, file) => {
+
+
+        //Check for files
+
+        if(!file || file.length === 0) {
+            return res.status(404).json({
+                err: 'No files exist'
+            });
+        }
+
+        // Files exist
+        return res.json(file);
+    })
+});
+
+/* GET File Image Page */
+
+app.get('/image/:filename', (req, res) => {
+    gfs.files.findOne({filename: req.params.filename}, (err, file) => {
+
+
+        //Check for files
+
+        if(!file || file.length === 0) {
+            return res.status(404).json({
+                err: 'No files exist'
+            });
+        }
+
+        // Check if image is content type
+        if(file.contentType === 'image/jpeg' || file.contentType === 'img/png') {
+            // Read output to browser
+            const readstream = gfs.createReadStream(file.filename);
+            readstream.pipe(res);
+        } else {
+            res.status(404).json({
+                err: 'Not an image'
+            });
+        }
+
+    })
+});
 
 
 

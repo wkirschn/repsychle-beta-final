@@ -33,39 +33,54 @@
 // Course:       COMP3006
 // Date:         4/23/2022
 //
+// Import mongoose
+const mongoose = require("mongoose");
 
-// Import express and create a router
-const express = require('express');
-const router = express.Router();
-// Add reference to the models
+// Create schema definition object using mapping notation
 
-const disposalMethod = require('../models/recyclecourses');
-const Recycle = require('../models/recycling');
-const passport = require('passport');
+const compostSchemaDefinition = {
+    // add each element and its properties
+    objectName: {
+        type: String,
+        required: true,
+    },
+    objectDescription: {
+        type: String,
+        required: true,
+    },
+    objectEcoScore: {
+        type: String,
+        required: true,
+    },
 
-// add reusable middleware function to inject it in our handlers below that need authorization
-function IsLoggedIn(req,res,next) {
-    if (req.isAuthenticated()) {
-        return next();
-    }
-    res.redirect('/login');
-}
+    objectDisposalMethod: {
+        type: String,
+        required: true,
+    },
+    file: {
+        type: Object,
+        required: true
+    },
 
-/* GET Index Page for Recycling */
-router.get('/', (req, res, next) => {
-    // res.render('recycling/index', { title: 'recycling Tracker' });
+    objectLong: {
+        type: Number,
+        required: true,
+    },
 
-    Recycle.find((err, recycling) => {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            res.render('recycling/index', { title: 'Recycle Tracker', dataset: recycling, user: req.user });
-        }
-    })
-});
+    objectLat: {
+        type: Number,
+        required: true,
+    },
+    profile_id: {
+        type: String,
+        required: true,
+    },
+};
 
+// Create new mongoose schema using the definition object
+var compostSchema = new mongoose.Schema(compostSchemaDefinition, { timestamps: true });
 
-
-// Export this router module
-module.exports = router;
+// Create new mongoose model using the schema object and
+// Import new model > provide name and schema
+module.exports = mongoose.model("Compost", compostSchema);
+// alternative > module.exports = mongoose.model('Project', projectsSchema);

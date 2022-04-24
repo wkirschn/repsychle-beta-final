@@ -40,7 +40,7 @@ const router = express.Router();
 // Add reference to the models
 
 const disposalMethod = require('../models/recyclecourses');
-const Recycle = require('../models/recycling');
+const Garbage = require('../models/garbage');
 const passport = require('passport');
 
 // add reusable middleware function to inject it in our handlers below that need authorization
@@ -51,20 +51,20 @@ function IsLoggedIn(req,res,next) {
     res.redirect('/login');
 }
 
-/* GET Index Page for Recycling */
+/* GET Index Page for Garbage */
+
 router.get('/', (req, res, next) => {
     // res.render('recycling/index', { title: 'recycling Tracker' });
 
-    Recycle.find((err, recycling) => {
+    Garbage.find((err, garbage) => {
         if (err) {
             console.log(err);
         }
         else {
-            res.render('recycling/index', { title: 'Recycle Tracker', dataset: recycling, user: req.user });
+            res.render('recycling/index', { title: 'Garbage Tracker', dataset: garbage, user: req.user });
         }
     })
 });
-
 
 
 // Export this router module
