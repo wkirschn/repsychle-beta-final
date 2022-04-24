@@ -62,18 +62,6 @@ var reyclingRouter = require('./routes/recycling');
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 var app = express();
 
 // view engine setup
