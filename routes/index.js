@@ -51,11 +51,11 @@ router.post('/register', (req, res, next) => {
         return res.redirect('/registers');
       }
       else {
-        res.redirect('https://www.google.com/');
+
 
         // log user in
         req.login(newUser, (err) => {
-          res.redirect('https://www.google.com/');
+          res.redirect('/recycling');
         });
       }
     });
