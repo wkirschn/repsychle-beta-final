@@ -250,9 +250,9 @@ Date:         4/23/2022
                             <h3 class="card-text" style="color: #7bbc7e">Description: </h3>
                             <p class="card-text" style = "color: whitesmoke">{{recycling.objectDescription}}</p>
                             <hr style = "color: whitesmoke">
-                            <h3 class="card-text" style="color: #7bbc7e">Disposal Method: </h3>
-                            <p class="card-text" style = "color: whitesmoke">{{recycling.objectDisposalMethod}}</p>
                             <h3 class="card-text" style="color: #7bbc7e">EcoScore: </h3>
+                            <p class="card-text" style = "color: whitesmoke">{{recycling.objectDisposalMethod}}</p>
+                            <h3 class="card-text" style="color: #7bbc7e">Disposal Method:</h3>
                             <p class="card-text" style = "color: whitesmoke">{{recycling.objectEcoScore}}</p>
                             <hr style = "color: whitesmoke">
 
@@ -363,8 +363,8 @@ Date:         4/23/2022
                             <h3 class="card-text" for="objectDescription" style="color: #7bbc7e">Description:</h3>
                             <textarea rows="3" cols="40" class="form-control" type="text" id="objectDescription" name="objectDescription" required aria-describedby="objectDescriptionHelp" style="margin-bottom: 50px; margin-top:50px;" placeholder="Please Enter an Object Description">{{recycling.objectDescription}}</textarea>
                             <hr style = "color: whitesmoke">
-                            <h3 class="card-text" for="objectDisposalMethod" style="color: #7bbc7e">Disposal Method:</h3>
-                            <select class="form-control" type="text" id="objectDisposalMethod" name="objectDisposalMethod" required aria-describedby="objectDisposalMethodHelp" style="margin-bottom: 50px; margin-top:50px;" placeholder="Please Enter an Object Disposal Method">
+                            <h3 class="card-text" for="objectDisposalMethod" style="color: #7bbc7e">EcoScore:</h3>
+                            <select class="form-control" type="text" id="objectEcoScore" name="objectEcoScore" required aria-describedby="objectEcoScoreHelp" style="margin-bottom: 50px; margin-top:50px;" placeholder="Please Enter an EcoScore">
 
                                 <option>VERY HIGH</option>
                                 <option>HIGH</option>
@@ -374,8 +374,8 @@ Date:         4/23/2022
 
 
 
-                            </select>                            <h3 class="card-text" for="objectEcoScore" style="color: #7bbc7e">EcoScore: </h3>
-                            <select class="form-control" type="text" id="objectEcoScore" name="objectEcoScore" required aria-describedby="objectEcoScoreHelp" style="margin-bottom: 50px; margin-top:50px;" placeholder="Please Enter an EcoScore">
+                            </select>                            <h3 class="card-text" for="objectEcoScoreobjectDisposalMethod" style="color: #7bbc7e">Disposal Method: </h3>
+                            <select class="form-control" type="text" id="objectDisposalMethod" name="objectDisposalMethod" required aria-describedby="objectDisposalMethodHelp" style="margin-bottom: 50px; margin-top:50px;" placeholder="Please Enter an Object Disposal Method">
                                 <option>RECYCLE</option>
                                 <option>GARBAGE</option>
                                 <option>COMPOST</option>
