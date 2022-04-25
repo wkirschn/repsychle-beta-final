@@ -369,6 +369,7 @@ app.post('/recycling/edit/:_id', IsLoggedIn, (req, res,next) => {
 /* GET the Object being added to the Database - Recycle */
 app.get('/recycling/delete/:_id', IsLoggedIn, (req, res, next) => {
     // call remove method and pass id as a json object
+
     Recycle.remove({ _id: req.params._id }, (err) => {
         if (err) {
             console.log(err);
@@ -380,7 +381,7 @@ app.get('/recycling/delete/:_id', IsLoggedIn, (req, res, next) => {
 });
 
 /* GET View based on ID of Object - Recycling */
-app.get('/recycling/view/:_id', IsLoggedIn, (req, res, next) => {
+app.get('/recycling/view/:_id', (req, res, next) => {
     // Find the Recycling Object by ID
     // Find available courses
     // Pass them to the view
@@ -397,7 +398,6 @@ app.get('/recycling/view/:_id', IsLoggedIn, (req, res, next) => {
             res.render('recycling/view', {
                 title: 'View: ',
                 recycling: recycling,
-
                 user: req.user,
             });
 

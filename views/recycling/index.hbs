@@ -83,6 +83,9 @@ Date:         4/23/2022
 <body class="background-attachment: fixed;" style="/*transform: perspective(0px) scale(1);*//*background: linear-gradient(170deg, #001122, #011c2e 14%, #003346 28%, #004b5b 40%, #00646c 49%, #077e76 65%, #36977c 75%, #63b07e 88%, #7bbc7e);*//*transform-style: preserve-3d;*//*box-shadow: 0px 0px;*/transform: perspective(0px) scale(1);background: repeating-linear-gradient(180deg, #001122, #011c2e 7%, #003346 21%, #004b5b 40%, #00646c 49%, #077e76 65%, #36977c 75%, #63b07e 88%, #7bbc7e) fixed;transform-style: preserve-3d;box-shadow: 0px 0px;height: 100%;">
 <div></div>
 
+
+
+
 <div class="container text-center" style="background: rgba(123,188,126,0.2);margin-top: 50px;margin-bottom: 50px;">
     <div class="row" style="text-align: center;background: rgba(40,45,50,0.2);">
         <div class="col-md-12" style="margin: 0px;margin-top: 5px;padding: 5px;height: 50%;">
@@ -119,7 +122,12 @@ Date:         4/23/2022
                     <hr>
                     <p style="color: white;font-size: 18px;">Welcome Back {{user.username}}</p>
                 <hr>
+                {{else}}
+                    <h1 class="name" style="color: white;font-size: 32px;">Please <a style="color: white;font-size: 32px;" href="/login">sign in</a> create a Database Entry.</h1>
+                    <hr>
+
                 {{/if}}
+
 
                 <div class="card-group">
 
@@ -138,6 +146,9 @@ Date:         4/23/2022
 
                                 <a href="/recycling/view/{{this._id}}" class="btn btn-primary" style="background: #7bbc7e">View Entry</a>
                                 <hr>
+
+
+
                                 {{#if this.profile_id}}
                                    <a href="/recycling/edit/{{this._id}}"
                                            class="btn btn-primary" style="background: #7bbc7e">Edit</a>

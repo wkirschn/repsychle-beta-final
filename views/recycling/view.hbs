@@ -88,16 +88,26 @@ Date:         4/23/2022
     <div class="row text-center justify-content-center align-items-center" style="margin: 12px;padding: 12px;width: 100%;margin-bottom: 12px;" onclick="return true">
         <div class="row" style="text-align: center;background: rgba(40,45,50,0.2);">
             <div class="card" style=" background: rgba(40,45,50,0.8);">
-
                 <div class="col-md-12" style="margin: 0px;margin-top: 5px;padding: 5px;height: 50%;">
                     <div class="box rounded-3" style="text-align: center;/*transform: perspective(0px) scale(1);*//*transform-style: preserve-3d;*//*box-shadow: 0px 0px;*/transform: perspective(0px) scale(1);transform-style: preserve-3d;box-shadow: 0px 0px;height: 100%;width: 100%;padding: 50px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-recycle icon" style="box-shadow: 0px 0px;color: #7bbc7e;width: 100px;height: 100px;margin: 15;font-size: 100px;">
                         <path d="M9.302 1.256a1.5 1.5 0 0 0-2.604 0l-1.704 2.98a.5.5 0 0 0 .869.497l1.703-2.981a.5.5 0 0 1 .868 0l2.54 4.444-1.256-.337a.5.5 0 1 0-.26.966l2.415.647a.5.5 0 0 0 .613-.353l.647-2.415a.5.5 0 1 0-.966-.259l-.333 1.242-2.532-4.431zM2.973 7.773l-1.255.337a.5.5 0 1 1-.26-.966l2.416-.647a.5.5 0 0 1 .612.353l.647 2.415a.5.5 0 0 1-.966.259l-.333-1.242-2.545 4.454a.5.5 0 0 0 .434.748H5a.5.5 0 0 1 0 1H1.723A1.5 1.5 0 0 1 .421 12.24l2.552-4.467zm10.89 1.463a.5.5 0 1 0-.868.496l1.716 3.004a.5.5 0 0 1-.434.748h-5.57l.647-.646a.5.5 0 1 0-.708-.707l-1.5 1.5a.498.498 0 0 0 0 .707l1.5 1.5a.5.5 0 1 0 .708-.707l-.647-.647h5.57a1.5 1.5 0 0 0 1.302-2.244l-1.716-3.004z"></path>
                     </svg>
                         <h1 class="name" style="color: white;font-size: 32px;">View - Recyclable Objects</h1>
                         <img src="/assets/img/repsychle_logo 1 shadow.png" style="width: 250px;padding-top: 15px;padding-bottom: 15px;" />
+                        {{#if user}}
+                        {{!-- Add links to CRUD operations --}}
+                            <hr>
+                            <a style="color: white;font-size: 32px;" href="/recycling/add">Add a new recycling object</a>
+                            <hr>
+                            <p style="color: white;font-size: 18px;">Welcome Back {{user.username}}</p>
+                            <hr>
+                        {{else}}
+                            <h1 class="name" style="color: white;font-size: 32px;">Please <a style="color: white;font-size: 32px;" href="/login">sign in</a> create a Database Entry.</h1>
+                            <hr>
+
+                        {{/if}}
                         <hr style="color: whitesmoke">
                         <img id="trash_disposal_image" class="rounded-circle" src="https://repsychle-production-new.herokuapp.com/image/4566ec26bb131ea3307afe7122e91de9.jpg" style="width: 400px;height: 400px;margin: 25px;">
-
                         <p id="trash_disposal_description-1" style="color: white;font-size: 32px;">Recyclable</p>
                         <p id="trash_disposal_description-2" style="color: white;font-size: 23px;">Objects that can be recycled have a variety of advantages over garbage and hazardous waste. Since the materials of these objects can be separated more easily into their respective compounds; recyclable objects truly represent the meaning of <em>Reduce, Reuse, and Recycle.</em>&nbsp; <br><br>Depending on your region, you may be required differently based on the location of the recycling and how the transportation of these objects is handled. Please remember to always follow local guidelines provided by your region.<br><br>If possible, try the following tips:<br>- Pick one item that you are constantly using for a short period of time and replace it with a reusable alternative<br>- Learn how to reuse certain items that can have more than one use<br>- When possible, rinse any objects that may contain leftover food to reduce the amount of contamination&nbsp;</p>
                     </div>
